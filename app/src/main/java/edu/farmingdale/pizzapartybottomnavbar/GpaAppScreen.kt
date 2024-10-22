@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 // ToDo 4: Match the UI as in drawable gpa_design.png. Use the following hints:
 // - The background color should be Color.Cyan
@@ -33,36 +34,35 @@ fun GpaAppScreen() {
     var backColor by remember { mutableStateOf(Color.White) }
     var btnLabel by remember { mutableStateOf("Calulate GPA") }
 
-    Column(
-        modifier = Modifier
-        ,verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    val backgroundColor = Color.Cyan
 
+    Column(modifier = Modifier.fillMaxSize().background(backgroundColor),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally)
+    {
         TextField(
             value = grade1,
-            onValueChange = { grade1 = it },Modifier.padding(16.dp),
-            label = { Text("Course 1 Grade")}
+            onValueChange = { grade1 = it },
+            label = { Text("Course 1 Grade")},
+            colors = TextFieldDefaults.colors( unfocusedContainerColor = Color.Cyan,focusedContainerColor = Color.Cyan),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
-
-
         TextField(
             value = grade2,
-            onValueChange = { grade2 = it },
+            onValueChange = { grade2 = it },Modifier.padding(16.dp).background(backgroundColor),
             label = { Text("Course 2 Grade") },
+            colors = TextFieldDefaults.colors( unfocusedContainerColor = Color.Cyan,focusedContainerColor = Color.Cyan),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
-
-
-
         TextField(
             value = grade3,
-            onValueChange = { grade3 = it },
+            onValueChange = { grade3 = it },Modifier.background(backgroundColor),
             label = { Text("Course 3 Grade") },
+            colors = TextFieldDefaults.colors( unfocusedContainerColor = Color.Cyan,focusedContainerColor = Color.Cyan),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
-
-
         Button(onClick = {
             if (btnLabel == "Compute GPA") {
-
                 val gpaVal = calGPA(grade1, grade2, grade3)
                 if (gpaVal != null) {
                     gpa = gpaVal.toString()
@@ -89,16 +89,18 @@ fun GpaAppScreen() {
         }, modifier = Modifier.padding(top = 56.dp)) {
             Text(btnLabel)
         }
-
-
         if (gpa.isNotEmpty()) {
             Text(text = "GPA: $gpa")
         }
-
-
+        Button(onClick = {
+            grade1 = ""
+            grade2 = ""
+            grade3 = ""
+        }) {
+            Text(fontSize = 16.sp, text ="Clear Fields")
+        }
     }
 }
-
 
 fun calGPA(grade1: String, grade2: String, grade3: String): Double {
     val grades = listOf(grade1.toDouble(), grade2.toDouble(), grade3.toDouble())
