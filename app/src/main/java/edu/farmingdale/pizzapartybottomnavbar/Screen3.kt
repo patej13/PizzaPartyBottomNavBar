@@ -34,16 +34,16 @@ import androidx.compose.ui.unit.sp
 fun Screen3() {
     var sliderValue by remember { mutableStateOf(0.5f) }
     var chkd by remember { mutableStateOf(true) }
-
+    val brushColor = arrayOf(0.0f to Color.Blue, 0.2f to Color.Yellow, 1f to Color.Blue)
 
     val context = LocalContext.current
-    Column ( modifier = Modifier.padding(horizontal = 20.dp).fillMaxSize(),
+    Column ( modifier = Modifier.fillMaxSize().background(brush = Brush.verticalGradient(colorStops = brushColor)),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally){
         Slider(value = sliderValue, onValueChange = { sliderValue=it }, Modifier.fillMaxWidth()
             , enabled = chkd)
 
-        Text (fontSize = 20.sp, text = "Second Screen" )
+        Text (fontSize = 20.sp, text = "Second Screen " + sliderValue)
 
         Button(onClick = { val newInt = Intent(Intent.ACTION_VIEW)
             newInt.setData(Uri.parse("tel:6314202000"))
@@ -54,7 +54,6 @@ fun Screen3() {
         Checkbox(checked = chkd, onCheckedChange = { chkd=it }, modifier = Modifier.padding(10.dp))
 
     }
-
 }
 
 
