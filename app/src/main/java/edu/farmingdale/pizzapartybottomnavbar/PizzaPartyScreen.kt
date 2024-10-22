@@ -54,7 +54,7 @@ fun PizzaPartyScreen( modifier: Modifier = Modifier) {
         )
         RadioGroup(
             labelText = "How hungry?",
-            radioOptions = listOf("Light", "Medium", "Very hungry"),
+            radioOptions = listOf("Light", "Medium", "Hungry","Very hungry"),
             selectedOption = hungerLevel,
             onSelected = { hungerLevel = it },
             modifier = modifier
@@ -84,7 +84,6 @@ fun NumberField(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-
     TextField(
         value = textInput,
         onValueChange = onValueChange,
@@ -96,7 +95,6 @@ fun NumberField(
         modifier = modifier
     )
 }
-
 @Composable
 fun RadioGroup(
     labelText: String,
@@ -142,6 +140,7 @@ fun calculateNumPizzas(
     val slicesPerPerson = when (hungerLevel) {
         "Light" -> 2
         "Medium" -> 3
+        "Hungry" -> 4
         else -> 5
     }
 
