@@ -23,11 +23,9 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun GpaAppScreen() {
-
     var grade1 by remember { mutableStateOf("") }
     var grade2 by remember { mutableStateOf("") }
     var grade3 by remember { mutableStateOf("") }
-
 
     // Declare variables for GPA result and background color
     var gpa by remember { mutableStateOf("") }
