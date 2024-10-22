@@ -4,7 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-
 @Composable
 fun NavigationGraph(navController: NavHostController, onBottomBarVisibilityChanged: (Boolean) -> Unit) {
     NavHost(navController, startDestination = BottomNavigationItems.Welcome.route) {
@@ -14,7 +13,7 @@ fun NavigationGraph(navController: NavHostController, onBottomBarVisibilityChang
         }
         composable(BottomNavigationItems.PizzaScreen.route) {
             onBottomBarVisibilityChanged(true)
-           PizzaPartyScreen()
+            PizzaPartyScreen()
         }
         composable(BottomNavigationItems.GpaAppScreen.route) {
             onBottomBarVisibilityChanged(true)
